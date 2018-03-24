@@ -1,0 +1,40 @@
+spring.jmx:
+   enabled: false
+
+spring.datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:bootexample;MODE=MySQL
+
+#security:
+#  basic:
+#    enabled: false
+
+#management endpoints on a separate port
+management:
+  port: 8091
+  security:
+    enabled: false # management port is internal only. no need to secure it.
+
+project:
+  name: caching-service
+  version: 0.1
+  description: boot-example default description
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+---
+spring:
+  profiles: test
+  h2:
+    console:
+      enabled: true
+
+spring.jpa:
+    hibernate.ddl-auto: create-drop
+
+logging:
+  file: caching-service.log
+  org.hibernate: INFO
